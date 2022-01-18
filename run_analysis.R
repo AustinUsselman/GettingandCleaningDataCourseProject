@@ -44,6 +44,7 @@ Merged <- cbind(Subject, Y, X)
 TidyData <- Merged %>% select(subject, code, contains("mean"), contains("std"))
 TidyData$code <- activities[TidyData$code, 2]
 
+# Labels everything
 names(TidyData)[2] = "activity"
 names(TidyData)<-gsub("^f", "Frequency", names(TidyData))
 names(TidyData)<-gsub("tBody", "TimeBody", names(TidyData))
