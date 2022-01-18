@@ -5,26 +5,32 @@ date: "1/18/2022"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# run_analysis downloads and tidies data from http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
 
-## R Markdown
+## Download the data
+In folder UCI HAR Dataset
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Extract data for use
+features from features.txt
+activities from activity_labels.txt
+subject_test from subject_test.txt
+subject_train from subject_train.txt
+x_test from X_test.txt
+y_test from y_test.txt
+x_train from X_train.txt
+y_train from y_train.txt
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Merge Data
+X is rbind(x_train, x_test)
+Y is rbind(y_train, y_test)
+Subject is rbind(subject_train, subject_test)
+Merged is cbind(Subject, Y, X)
 
-```{r cars}
-summary(cars)
-```
+## Extracts mean and std for each measurement
+TidyData is assigned the mean and std from the Merged data
 
-## Including Plots
+## Labels
+TidyData is labeled
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# New data
+FinalData is the average of each variable in TidyData and is outputted as TidyData.txt
